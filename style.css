@@ -299,4 +299,10 @@ a:hover {
     gap: 80px 30px;
     padding-block-end: 140px;
   }
+
+  :is(.animation, .design, .photography, .crypto, .business) > a {
+    position: absolute;
+    bottom: 40px;
+    left: 32px;
+  }
 }
