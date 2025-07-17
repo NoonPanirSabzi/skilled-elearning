@@ -74,8 +74,8 @@ body {
 }
 
 header {
-  padding-inline: 16px;
-  padding-block-start: 16px;
+  padding-inline: clamp(16px, 5.2vw, 40px);
+  padding-block-start: clamp(16px, 3.125vw, 24px);
   margin-block-end: 38px;
   display: flex;
   justify-content: space-between;
@@ -83,10 +83,17 @@ header {
 }
 
 .intro-content {
-  padding-inline: 16px;
+  padding-inline: clamp(16px, 5.2vw, 40px);
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 23px;
+  max-inline-size: fit-content;
+  margin: auto;
+}
+
+.intro-content__text {
+  /* 28.5em = 456px assuming 1em = 16px */
+  max-inline-size: 28.5em;
 }
 
 .intro-content__text > p {
@@ -94,15 +101,23 @@ header {
 }
 
 .features {
-  background: var(--gradeint-bg);
-  padding-inline: 16px;
+  padding-inline: clamp(16px, 5.2vw, 40px);
   padding-block: 66px 80px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  row-gap: 40px;
+  max-inline-size: fit-content;
+  margin: auto;
 }
 
-.features div {
+.features-gd-background {
+  background: var(--gradeint-bg);
+}
+
+.features > div {
+  /* 21.875em = 350px assuming 1em = 16px */
+  max-inline-size: 21.875em;
+  box-sizing: border-box;
   border-radius: 10px;
 }
 
@@ -112,6 +127,7 @@ header {
   /* later:
    I guess padding-block, in desktop or mobile needs to increase */
   padding-block: 24px 32px;
+  block-size: 100%;
 }
 
 :is(.animation, .design, .photography, .crypto, .business) {
@@ -151,9 +167,12 @@ header {
   content: url(/assets/icon-business.svg);
 }
 
-.footer-wrapper {
+footer {
   background-color: var(--color-secondary);
-  padding: 36px 16px;
+}
+
+.footer-wrapper {
+  padding: 36px clamp(16px, 5.2vw, 40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -221,4 +240,63 @@ a:any-link {
 
 a:hover {
   color: var(--color-link-hover);
+}
+
+/* Responsive Breakpoints */
+
+.max-width-center {
+  /* 70em = 1120px assuming 1em = 16px */
+  max-inline-size: 70em;
+  margin-inline: auto;
+}
+
+/* Tablet */
+/*  48em = 768px assuming 1em = 16px */
+@media (min-width: 48em) {
+  body {
+    overflow-x: hidden;
+  }
+  .intro-content {
+    grid-template-columns: 1fr minmax(0, calc(100vw - 63em)) 1fr;
+    margin-block-start: -80px;
+  }
+
+  .img-hero-wrapper {
+    margin-right: -100%;
+  }
+
+  .intro-content__text {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .features {
+    max-inline-size: fit-content;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    gap: 56px 25px;
+  }
+
+  .features__promo {
+    padding-inline: 32px;
+    padding-block-start: 56px;
+  }
+}
+
+/* Desktop */
+/* 70em = 1120px assuming 1em = 16px */
+
+@media (min-width: 70em) {
+  .intro-content {
+    grid-template-columns: 1fr 110px 1fr;
+    max-inline-size: 70em;
+  }
+
+  .features {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 80px 30px;
+    padding-block-end: 140px;
+  }
 }
