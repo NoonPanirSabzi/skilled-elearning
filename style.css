@@ -256,9 +256,17 @@ a:hover {
   body {
     overflow-x: hidden;
   }
+
+  header {
+    margin-bottom: 0;
+    /* position is set to relative, so z-index can be set higher than body so header doesn't go under body */
+    position: relative;
+    z-index: 1;
+  }
+
   .intro-content {
     grid-template-columns: 1fr minmax(0, calc(100vw - 63em)) 1fr;
-    margin-block-start: -80px;
+    margin-block-start: -180px;
   }
 
   .img-hero-wrapper {
@@ -266,6 +274,7 @@ a:hover {
   }
 
   .intro-content__text {
+    margin-block-start: 100px;
     display: flex;
     flex-flow: column;
     justify-content: center;
